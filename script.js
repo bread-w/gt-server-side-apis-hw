@@ -2,13 +2,13 @@
 // Create an on click event listener to run the function city search
 
 $("#submit-button").on("click", function () {
-  $("#search-bar").val();
+  var cityName = $("#search-bar").val();
   console.log("You clicked my button!");
-  console.log($("#search-bar").val());
+  console.log(cityName);
 
   var queryURL =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
-    $("#search-bar").val() +
+    cityName +
     "&appid=fb0a218354a329c215a0e902f7297dc6";
 
   // Get the value of my input and console log it
