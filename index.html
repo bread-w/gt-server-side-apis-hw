@@ -12,10 +12,39 @@
     />
   </head>
   <body>
+    <!--add a search bar and a button to input search -->
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <input type="text" placeholder="Enter City" id="search-bar" />
+        <button class="btn btn-primary" id="submit-button">Submit</button>
+      </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-    var queryURL = ""
-      console.log("Hello World");
+
+      // need a new API for every new city!!
+
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+      }).then(function (response) {
+        console.log(response);
+      });
+
+      function citySearch() {
+        var cityNameEl = $("#search-bar").val();
+
+        var queryURL =
+          "http://api.openweathermap.org/data/2.5/weather?q=" +
+          cityNameEl +
+          "&appid=fb0a218354a329c215a0e902f7297dc6";
+
+        // Get the value of my input and console log it
+        // Take the city name to then search within my Atlanta API
+        
+      }
+
+      $("#submit-button").on("click", citySearch);
     </script>
   </body>
 </html>
