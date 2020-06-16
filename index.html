@@ -12,39 +12,28 @@
     />
   </head>
   <body>
-    <!--add a search bar and a button to input search -->
     <div class="row">
       <div class="form-group col-sm-12">
         <input type="text" placeholder="Enter City" id="search-bar" />
         <button class="btn btn-primary" id="submit-button">Submit</button>
       </div>
     </div>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-
-      // need a new API for every new city!!
-
-      $.ajax({
-        url: queryURL,
-        method: "GET",
-      }).then(function (response) {
-        console.log(response);
-      });
-
-      function citySearch() {
-        var cityNameEl = $("#search-bar").val();
-
-        var queryURL =
-          "http://api.openweathermap.org/data/2.5/weather?q=" +
-          cityNameEl +
-          "&appid=fb0a218354a329c215a0e902f7297dc6";
-
-        // Get the value of my input and console log it
-        // Take the city name to then search within my Atlanta API
-        
-      }
-
-      $("#submit-button").on("click", citySearch);
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
