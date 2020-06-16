@@ -6,12 +6,14 @@ $("#submit-button").on("click", function () {
   console.log("You clicked my button!");
   console.log(cityName);
 
+  // Get the value of my input and console log it
+
   var queryURL =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
     "&appid=fb0a218354a329c215a0e902f7297dc6";
 
-  // Get the value of my input and console log it
+  
   // Take the city name to then search within my Atlanta API
 
   $.ajax({
