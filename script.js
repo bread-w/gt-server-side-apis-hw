@@ -21,8 +21,11 @@ $("#submit-button").on("click", function () {
   }).then(function (response) {
     console.log(response);
     console.log(response.wind.speed);
+    var iconImg = response.weather[0].icon;
+    var iconURL = "http://openweathermap.org/img/w/" + iconImg + ".png";
+
     $("#cityDay").text(response.name);
-    
+    $(".img-main").attr("src", iconURL);
     $("#temp-main").text("Temperature: " + response.main.temp);
     $("#humid-main").text("Humidity: " + response.main.humidity + "%");
     $("#windSpeed-main").text("Wind Speed: " + response.wind.speed + " MPH");
