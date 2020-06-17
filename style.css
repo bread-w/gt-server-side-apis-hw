@@ -12,6 +12,8 @@ ul {
 
 .jumbotron {
     font-weight: bold;
+    border-style: groove;
+    background-color: whitesmoke;
 }
 
 .daily {
@@ -28,26 +30,39 @@ ul {
     background-color: forestgreen;
     color: whitesmoke;
     text-align: center;
-    position: fixed;
-    left: -120px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .moderate {
     background-color: yellow;
     color: black;
     text-align: center;
-    position: relative;
-    left: -120px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .severe {
     background-color: red;
     color: whitesmoke;
     text-align: center;
-    position: relative;
-    left: -120px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 #uvIndexStats {
     display: none;
+    padding-right: 5px;
+}
+
+.newCityButton {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#forecastBanner {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-weight: bold;
 }

@@ -2,12 +2,12 @@ var searchHistory = localStorage.getItem("searchHistory")
   ? JSON.parse(localStorage.getItem("searchHistory"))
   : [];
 
+
 function renderCities() {
   $(".cityButtons").empty();
   for (var i = 0; i < searchHistory.length; i++) {
     var button = $("<button>").text(searchHistory[i]);
-    $(button).attr("class", "newCityButton");
-    $(button).attr("class", "btn-block");
+    $(button).attr("class", "btn-block newCityButton");
     var listItem = $("<li>").append(button);
     $(".cityButtons").append(listItem);
   }
@@ -152,11 +152,7 @@ function searchEl(cityName) {
 }
 $("#submit-button").on("click", function () {
   var cityName = $("#search-bar").val();
-  // console.log("You clicked my button!");
-  // console.log(cityName);
-  // console.log(searchHistory);
   searchHistory.push(cityName);
-  // console.log(searchHistory);
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
   searchEl(cityName);
   renderCities();
