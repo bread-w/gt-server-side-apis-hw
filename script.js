@@ -23,16 +23,16 @@ $("#submit-button").on("click", function () {
   var dayOneEl = moment().add(1, "days");
   dayOneEl = dayOneEl.format("M/D/YYYY");
 
-  var dayTwoEl = moment().add(1, "days");
+  var dayTwoEl = moment().add(2, "days");
   dayTwoEl = dayTwoEl.format("M/D/YYYY");
 
-  var dayThreeEl = moment().add(1, "days");
+  var dayThreeEl = moment().add(3, "days");
   dayThreeEl = dayThreeEl.format("M/D/YYYY");
 
-  var dayFourEl = moment().add(1, "days");
+  var dayFourEl = moment().add(4, "days");
   dayFourEl = dayFourEl.format("M/D/YYYY");
 
-  var dayFiveEl = moment().add(1, "days");
+  var dayFiveEl = moment().add(5, "days");
   dayFiveEl = dayFiveEl.format("M/D/YYYY");
 
   $.ajax({
@@ -57,18 +57,22 @@ $("#submit-button").on("click", function () {
     url: fiveDayURL,
     method: "GET",
   }).then(function (response) {
+    var dayOneIcon = response.list[3].weather[0].icon;
+    var dayTwoIcon = response.list[11].weather[0].icon;
+    var dayThreeIcon = response.list[19].weather[0].icon;
+    var dayFourIcon = response.list[27].weather[0].icon;
+    var dayFiveIcon = response.list[35].weather[0].icon;
 
-    var dayOneIcon = response.list[3].weather[0].icon
-    var dayTwoIcon = response.list[11].weather[0].icon
-    var dayThreeIcon = response.list[19].weather[0].icon
-    var dayFourIcon = response.list[27].weather[0].icon
-    var dayFiveIcon = response.list[35].weather[0].icon
-
-    var dayOneIconURL = "http://openweathermap.org/img/w/" + dayOneIcon + ".png";
-    var dayTwoIconURL = "http://openweathermap.org/img/w/" + dayTwoIcon + ".png";
-    var dayThreeIconURL = "http://openweathermap.org/img/w/" + dayThreeIcon + ".png";
-    var dayFourIconURL = "http://openweathermap.org/img/w/" + dayFourIcon + ".png";
-    var dayFiveIconURL = "http://openweathermap.org/img/w/" + dayFiveIcon + ".png";
+    var dayOneIconURL =
+      "http://openweathermap.org/img/w/" + dayOneIcon + ".png";
+    var dayTwoIconURL =
+      "http://openweathermap.org/img/w/" + dayTwoIcon + ".png";
+    var dayThreeIconURL =
+      "http://openweathermap.org/img/w/" + dayThreeIcon + ".png";
+    var dayFourIconURL =
+      "http://openweathermap.org/img/w/" + dayFourIcon + ".png";
+    var dayFiveIconURL =
+      "http://openweathermap.org/img/w/" + dayFiveIcon + ".png";
 
     $("#dayOne").text(dayOneEl);
     $("#dayTwo").text(dayTwoEl);
@@ -81,5 +85,26 @@ $("#submit-button").on("click", function () {
     $("#dayThreeImg").attr("src", dayThreeIconURL);
     $("#dayFourImg").attr("src", dayFourIconURL);
     $("#dayFiveImg").attr("src", dayFiveIconURL);
+
+    $("#dayOneTemp").text("Temp: " + response.list[3].main.temp);
+    $("#dayTwoTemp").text("Temp: " + response.list[11].main.temp);
+    $("#dayThreeTemp").text("Temp: " + response.list[19].main.temp);
+    $("#dayFourTemp").text("Temp: " + response.list[27].main.temp);
+    $("#dayFiveTemp").text("Temp: " + response.list[35].main.temp);
+
+    $("#dayOneHumidity").text(
+      "Humidity: " + response.list[3].main.humidity + "%"
+    );
+    $("#dayTwoHumidity").text(
+      "Humidity: " + response.list[11].main.humidity + "%"
+    );
+    $("#dayThreeHumidity").text(
+      "Humidity: " + response.list[19].main.humidity + "%"
+    );
+    $("#dayFourHumidity").text("Humidity: " + response.list[27].main.humidity) +
+      "%";
+    $("#dayFiveHumidity").text(
+      "Humidity: " + response.list[35].main.humidity + "%"
+    );
   });
 });
