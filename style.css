@@ -1,7 +1,7 @@
 header {
     text-align: center;
     background-color: black;
-    color: white;
+    color: whitesmoke;
     padding: 20px;
     margin-bottom: 20px;
 }
@@ -29,7 +29,7 @@ ul {
     color: whitesmoke;
     text-align: center;
     position: fixed;
-    left: -40px;
+    left: -120px;
 }
 
 .moderate {
@@ -37,7 +37,7 @@ ul {
     color: black;
     text-align: center;
     position: relative;
-    left: -40px;
+    left: -120px;
 }
 
 .severe {
@@ -45,7 +45,7 @@ ul {
     color: whitesmoke;
     text-align: center;
     position: relative;
-    left: -40px;
+    left: -120px;
 }
 
 #uvIndexStats {
