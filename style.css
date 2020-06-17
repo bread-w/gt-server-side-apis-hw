@@ -1,0 +1,16 @@
+header {
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.daily {
+    background-color: dodgerblue;
+}
+

@@ -11,7 +11,7 @@ $("#submit-button").on("click", function () {
   var queryURL =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
-    "&appid=fb0a218354a329c215a0e902f7297dc6";
+    "&units=imperial&appid=fb0a218354a329c215a0e902f7297dc6";
 
   
   // Take the city name to then search within my Atlanta API
