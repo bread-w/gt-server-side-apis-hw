@@ -6,17 +6,21 @@ function renderCities() {
   $(".cityButtons").empty();
   for (var i = 0; i < searchHistory.length; i++) {
     var button = $("<button>").text(searchHistory[i]);
+    $(button).attr("class", "newCityButton");
     var listItem = $("<li>").append(button);
     $(".cityButtons").append(listItem);
   }
 }
+function recallCityData(){
+  console.log("You clicked me!");
+  console.log($(this).val());
+}
 
-// $(".cityButtons").on("click", function () {
-//   searchEl($(this).children()[0].text());
-// });
+
+
 
 function searchEl(cityName) {
-  console.log(cityName);
+  // console.log(cityName);
 
   var queryURL =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
@@ -49,6 +53,7 @@ function searchEl(cityName) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
+    
     var iconImg = response.weather[0].icon;
     var iconURL = "http://openweathermap.org/img/w/" + iconImg + ".png";
 
@@ -72,7 +77,7 @@ function searchEl(cityName) {
       method: "GET",
     }).then(function (response) {
       uvIndexEl = response.value;
-      console.log(uvIndexEl);
+      // console.log(uvIndexEl);
       if (uvIndexEl < 4) {
         $("#uvIndex-main").attr("class", "favorable");
       } else if (uvIndexEl > 4 && uvIndexEl < 7) {
@@ -82,6 +87,8 @@ function searchEl(cityName) {
       }
       $("#uvIndexStats").attr("style", "display:block");
       $("#uvIndex-main").text(uvIndexEl);
+
+      $(".newCityButton").on("click", recallCityData); 
     });
   });
 
@@ -143,14 +150,15 @@ function searchEl(cityName) {
 }
 $("#submit-button").on("click", function () {
   var cityName = $("#search-bar").val();
-  console.log("You clicked my button!");
-  console.log(cityName);
-  console.log(searchHistory);
+  // console.log("You clicked my button!");
+  // console.log(cityName);
+  // console.log(searchHistory);
   searchHistory.push(cityName);
-  console.log(searchHistory);
+  // console.log(searchHistory);
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
   searchEl(cityName);
   renderCities();
+
 });
 renderCities();
 var lastCity = searchHistory[searchHistory.length - 1];
