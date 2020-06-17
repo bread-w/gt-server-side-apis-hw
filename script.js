@@ -13,7 +13,6 @@ $("#submit-button").on("click", function () {
     cityName +
     "&units=imperial&appid=fb0a218354a329c215a0e902f7297dc6";
 
-  
   // Take the city name to then search within my Atlanta API
 
   $.ajax({
@@ -21,6 +20,13 @@ $("#submit-button").on("click", function () {
     method: "GET",
   }).then(function (response) {
     console.log(response);
+    console.log(response.wind.speed);
+    $("#cityDay").text(response.name);
+    
+    $("#temp-main").text("Temperature: " + response.main.temp);
+    $("#humid-main").text("Humidity: " + response.main.humidity + "%");
+    $("#windSpeed-main").text("Wind Speed: " + response.wind.speed + " MPH");
+    // $("#uvIndex-main").text("UV Index: " + response.main.temp);
 
     // Get the value of my input and console log it
     // Take the city name to then search within my Atlanta API
