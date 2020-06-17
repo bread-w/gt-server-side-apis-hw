@@ -7,13 +7,15 @@ function renderCities() {
   for (var i = 0; i < searchHistory.length; i++) {
     var button = $("<button>").text(searchHistory[i]);
     $(button).attr("class", "newCityButton");
+    $(button).attr("class", "btn-block");
     var listItem = $("<li>").append(button);
     $(".cityButtons").append(listItem);
   }
 }
 function recallCityData(){
   console.log("You clicked me!");
-  console.log($(this).val());
+  console.log(this.innerHTML);
+  searchEl(this.innerHTML);
 }
 
 
