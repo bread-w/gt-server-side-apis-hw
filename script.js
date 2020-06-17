@@ -1,6 +1,21 @@
-$("#submit-button").on("click", function () {
-  var cityName = $("#search-bar").val();
-  console.log("You clicked my button!");
+var searchHistory = localStorage.getItem("searchHistory")
+  ? JSON.parse(localStorage.getItem("searchHistory"))
+  : [];
+
+function renderCities() {
+  $(".cityButtons").empty();
+  for (var i = 0; i < searchHistory.length; i++) {
+    var button = $("<button>").text(searchHistory[i]);
+    var listItem = $("<li>").append(button);
+    $(".cityButtons").append(listItem);
+  }
+}
+
+// $(".cityButtons").on("click", function () {
+//   searchEl($(this).children()[0].text());
+// });
+
+function searchEl(cityName) {
   console.log(cityName);
 
   var queryURL =
@@ -125,4 +140,18 @@ $("#submit-button").on("click", function () {
       "Humidity: " + response.list[35].main.humidity + "%"
     );
   });
+}
+$("#submit-button").on("click", function () {
+  var cityName = $("#search-bar").val();
+  console.log("You clicked my button!");
+  console.log(cityName);
+  console.log(searchHistory);
+  searchHistory.push(cityName);
+  console.log(searchHistory);
+  localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+  searchEl(cityName);
+  renderCities();
 });
+renderCities();
+var lastCity = searchHistory[searchHistory.length - 1];
+searchEl(lastCity);
