@@ -101,8 +101,9 @@ $("#submit-button").on("click", function () {
     $("#dayThreeHumidity").text(
       "Humidity: " + response.list[19].main.humidity + "%"
     );
-    $("#dayFourHumidity").text("Humidity: " + response.list[27].main.humidity) +
-      "%";
+    $("#dayFourHumidity").text(
+      "Humidity: " + response.list[27].main.humidity + "%"
+    );
     $("#dayFiveHumidity").text(
       "Humidity: " + response.list[35].main.humidity + "%"
     );

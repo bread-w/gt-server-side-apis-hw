@@ -10,10 +10,16 @@ ul {
     list-style-type: none;
 }
 
+.jumbotron {
+    font-weight: bold;
+}
+
 .daily {
     background-color: dodgerblue;
 }
 
 .card {
     text-align: center;
+    font-weight: bold;
+    color: whitesmoke;
 }
