@@ -23,3 +23,31 @@ ul {
     font-weight: bold;
     color: whitesmoke;
 }
+
+.favorable {
+    background-color: forestgreen;
+    color: whitesmoke;
+    text-align: center;
+    position: fixed;
+    left: -40px;
+}
+
+.moderate {
+    background-color: yellow;
+    color: black;
+    text-align: center;
+    position: relative;
+    left: -40px;
+}
+
+.severe {
+    background-color: red;
+    color: whitesmoke;
+    text-align: center;
+    position: relative;
+    left: -40px;
+}
+
+#uvIndexStats {
+    display: none;
+}

@@ -1,12 +1,7 @@
-// need a new API for every new city!!
-// Create an on click event listener to run the function city search
-
 $("#submit-button").on("click", function () {
   var cityName = $("#search-bar").val();
   console.log("You clicked my button!");
   console.log(cityName);
-
-  // Get the value of my input and console log it
 
   var queryURL =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
@@ -17,7 +12,7 @@ $("#submit-button").on("click", function () {
     "http://api.openweathermap.org/data/2.5/forecast?q=" +
     cityName +
     "&units=imperial&appid=fb0a218354a329c215a0e902f7297dc6";
-  // Take the city name to then search within my Atlanta API
+
   var todaysDate = moment().format("(M/D/YYYY)");
 
   var dayOneEl = moment().add(1, "days");
@@ -47,10 +42,32 @@ $("#submit-button").on("click", function () {
     $("#temp-main").text("Temperature: " + response.main.temp);
     $("#humid-main").text("Humidity: " + response.main.humidity + "%");
     $("#windSpeed-main").text("Wind Speed: " + response.wind.speed + " MPH");
-    // $("#uvIndex-main").text("UV Index: " + response.main.temp);
 
-    // Get the value of my input and console log it
-    // Take the city name to then search within my Atlanta API
+    var latEl = response.coord.lat;
+    var lonEl = response.coord.lon;
+
+    var uvURL =
+      "http://api.openweathermap.org/data/2.5/uvi?appid=fb0a218354a329c215a0e902f7297dc6&lat=" +
+      latEl +
+      "&lon=" +
+      lonEl;
+
+    $.ajax({
+      url: uvURL,
+      method: "GET",
+    }).then(function (response) {
+      uvIndexEl = response.value;
+      console.log(uvIndexEl);
+      if (uvIndexEl < 4) {
+        $("#uvIndex-main").attr("class", "favorable");
+      } else if (uvIndexEl > 4 && uvIndexEl < 7) {
+        $("#uvIndex-main").attr("class", "moderate");
+      } else {
+        $("#uvIndex-main").attr("class", "severe");
+      }
+      $("#uvIndexStats").attr("style", "display:block");
+      $("#uvIndex-main").text(uvIndexEl);
+    });
   });
 
   $.ajax({
