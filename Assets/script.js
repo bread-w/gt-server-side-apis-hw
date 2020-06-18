@@ -29,12 +29,12 @@ function searchEl(cityName) {
   // console.log(cityName);
 
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
     "&units=imperial&appid=fb0a218354a329c215a0e902f7297dc6";
 
   var fiveDayURL =
-    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
     cityName +
     "&units=imperial&appid=fb0a218354a329c215a0e902f7297dc6";
 
@@ -68,7 +68,7 @@ function searchEl(cityName) {
     // grab icon img and place within the iconURL to generate weather icons
 
     var iconImg = response.weather[0].icon;
-    var iconURL = "http://openweathermap.org/img/w/" + iconImg + ".png";
+    var iconURL = "https://openweathermap.org/img/w/" + iconImg + ".png";
 
     // jumbotron info below
 
@@ -84,7 +84,7 @@ function searchEl(cityName) {
     var lonEl = response.coord.lon;
 
     var uvURL =
-      "http://api.openweathermap.org/data/2.5/uvi?appid=fb0a218354a329c215a0e902f7297dc6&lat=" +
+      "https://api.openweathermap.org/data/2.5/uvi?appid=fb0a218354a329c215a0e902f7297dc6&lat=" +
       latEl +
       "&lon=" +
       lonEl;
@@ -131,15 +131,15 @@ function searchEl(cityName) {
     // The above dayNumberIcons are pulling weather infor for 12noon on each day
     // below add in icons for each day
     var dayOneIconURL =
-      "http://openweathermap.org/img/w/" + dayOneIcon + ".png";
+      "https://openweathermap.org/img/w/" + dayOneIcon + ".png";
     var dayTwoIconURL =
-      "http://openweathermap.org/img/w/" + dayTwoIcon + ".png";
+      "https://openweathermap.org/img/w/" + dayTwoIcon + ".png";
     var dayThreeIconURL =
-      "http://openweathermap.org/img/w/" + dayThreeIcon + ".png";
+      "https://openweathermap.org/img/w/" + dayThreeIcon + ".png";
     var dayFourIconURL =
-      "http://openweathermap.org/img/w/" + dayFourIcon + ".png";
+      "https://openweathermap.org/img/w/" + dayFourIcon + ".png";
     var dayFiveIconURL =
-      "http://openweathermap.org/img/w/" + dayFiveIcon + ".png";
+      "https://openweathermap.org/img/w/" + dayFiveIcon + ".png";
 
     // dates live below
 
