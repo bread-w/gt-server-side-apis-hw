@@ -15,6 +15,7 @@ Clone the GitHub repository and open the index.html in the default broswer (goog
 ## Usage
 
 ![WeatherApp](/Assets/weather-app-frontpage.png)
+![HanddrwanHTMLskeleton](/Assets/original-html-skeleton.jpg)
 
 ## Credits
 
