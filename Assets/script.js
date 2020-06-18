@@ -1,8 +1,13 @@
+// if item in searchHistory, then parse the items;
+// otherwise, return an empty array.
+
 var searchHistory = localStorage.getItem("searchHistory")
   ? JSON.parse(localStorage.getItem("searchHistory"))
   : [];
 
-
+// on button click generate a new button
+// give new attr
+// and append to the li
 function renderCities() {
   $(".cityButtons").empty();
   for (var i = 0; i < searchHistory.length; i++) {
@@ -12,15 +17,14 @@ function renderCities() {
     $(".cityButtons").append(listItem);
   }
 }
-function recallCityData(){
+// on click pull previously search city's weather info
+function recallCityData() {
   console.log("You clicked me!");
   console.log(this.innerHTML);
   searchEl(this.innerHTML);
 }
 
-
-
-
+// type into search bar, and then pull city weather info on click
 function searchEl(cityName) {
   // console.log(cityName);
 
@@ -34,7 +38,11 @@ function searchEl(cityName) {
     cityName +
     "&units=imperial&appid=fb0a218354a329c215a0e902f7297dc6";
 
+  // using the moment CDN, determine the correct date
+
   var todaysDate = moment().format("(M/D/YYYY)");
+
+  // add days for 5 day forecast, IMO easier that using the dt from within response
 
   var dayOneEl = moment().add(1, "days");
   dayOneEl = dayOneEl.format("M/D/YYYY");
@@ -51,19 +59,26 @@ function searchEl(cityName) {
   var dayFiveEl = moment().add(5, "days");
   dayFiveEl = dayFiveEl.format("M/D/YYYY");
 
+  // ajax for main weather
+
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    
+    // grab icon img and place within the iconURL to generate weather icons
+
     var iconImg = response.weather[0].icon;
     var iconURL = "http://openweathermap.org/img/w/" + iconImg + ".png";
+
+    // jumbotron info below
 
     $("#cityDay").text(response.name + " " + todaysDate);
     $(".img-main").attr("src", iconURL);
     $("#temp-main").text("Temperature: " + response.main.temp);
     $("#humid-main").text("Humidity: " + response.main.humidity + "%");
     $("#windSpeed-main").text("Wind Speed: " + response.wind.speed + " MPH");
+
+    // grab lat/lon to plug into UV API
 
     var latEl = response.coord.lat;
     var lonEl = response.coord.lon;
@@ -74,12 +89,21 @@ function searchEl(cityName) {
       "&lon=" +
       lonEl;
 
+    // UV ajax goes within main weather ajax, because you have
+    // lat and lon defined to query new UV url
+
     $.ajax({
       url: uvURL,
       method: "GET",
     }).then(function (response) {
       uvIndexEl = response.value;
       // console.log(uvIndexEl);
+
+      // determine color for UV index
+      // below 4 is favorable
+      // 4-7 is moderate
+      // else is severe
+
       if (uvIndexEl < 4) {
         $("#uvIndex-main").attr("class", "favorable");
       } else if (uvIndexEl > 4 && uvIndexEl < 7) {
@@ -90,7 +114,7 @@ function searchEl(cityName) {
       $("#uvIndexStats").attr("style", "display:block");
       $("#uvIndex-main").text(uvIndexEl);
 
-      $(".newCityButton").on("click", recallCityData); 
+      $(".newCityButton").on("click", recallCityData);
     });
   });
 
@@ -104,6 +128,8 @@ function searchEl(cityName) {
     var dayFourIcon = response.list[27].weather[0].icon;
     var dayFiveIcon = response.list[35].weather[0].icon;
 
+    // The above dayNumberIcons are pulling weather infor for 12noon on each day
+    // below add in icons for each day
     var dayOneIconURL =
       "http://openweathermap.org/img/w/" + dayOneIcon + ".png";
     var dayTwoIconURL =
@@ -115,11 +141,15 @@ function searchEl(cityName) {
     var dayFiveIconURL =
       "http://openweathermap.org/img/w/" + dayFiveIcon + ".png";
 
+    // dates live below
+
     $("#dayOne").text(dayOneEl);
     $("#dayTwo").text(dayTwoEl);
     $("#dayThree").text(dayThreeEl);
     $("#dayFour").text(dayFourEl);
     $("#dayFive").text(dayFiveEl);
+
+    // attach icon URL to img src
 
     $("#dayOneImg").attr("src", dayOneIconURL);
     $("#dayTwoImg").attr("src", dayTwoIconURL);
@@ -127,11 +157,15 @@ function searchEl(cityName) {
     $("#dayFourImg").attr("src", dayFourIconURL);
     $("#dayFiveImg").attr("src", dayFiveIconURL);
 
+    // find temp and append to correct day card
+
     $("#dayOneTemp").text("Temp: " + response.list[3].main.temp);
     $("#dayTwoTemp").text("Temp: " + response.list[11].main.temp);
     $("#dayThreeTemp").text("Temp: " + response.list[19].main.temp);
     $("#dayFourTemp").text("Temp: " + response.list[27].main.temp);
     $("#dayFiveTemp").text("Temp: " + response.list[35].main.temp);
+
+    // find humidity and append to correct day card
 
     $("#dayOneHumidity").text(
       "Humidity: " + response.list[3].main.humidity + "%"
@@ -150,14 +184,19 @@ function searchEl(cityName) {
     );
   });
 }
+// on click take the search val
+// store into local storage as string
+// run both main search functions and render buttons
 $("#submit-button").on("click", function () {
   var cityName = $("#search-bar").val();
   searchHistory.push(cityName);
   localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
   searchEl(cityName);
   renderCities();
-
 });
+
+// render buttons and then take the last searched city
+// and run weather infor for that city
 renderCities();
 var lastCity = searchHistory[searchHistory.length - 1];
 searchEl(lastCity);
